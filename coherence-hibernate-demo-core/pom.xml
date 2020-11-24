@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.oracle.coherence.hibernate</groupId>
+		<artifactId>coherence-hibernate-demo-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+
+	<artifactId>coherence-hibernate-demo-core</artifactId>
+
+	<name>Coherence Hibernate Demo Core</name>
+	<description>Share Serialization Code for the Coherence Hibernate Demo</description>
+
+	<properties>
+		<java.version>8</java.version>
+		<hibernate.version>5.2.17.Final</hibernate.version>
+		<coherence-hibernate-cache-52.version>2.0.0-SNAPSHOT</coherence-hibernate-cache-52.version>
+		<coherence.version>20.06.1</coherence.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.persistence</groupId>
+			<artifactId>jakarta.persistence-api</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>

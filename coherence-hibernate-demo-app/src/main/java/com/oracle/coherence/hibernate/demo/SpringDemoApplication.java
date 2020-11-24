@@ -8,6 +8,11 @@ package com.oracle.coherence.hibernate.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
+import org.springframework.context.annotation.Bean;
+
+import com.oracle.coherence.hibernate.demo.configuration.EventMixin;
+import com.oracle.coherence.hibernate.demo.model.Event;
 
 /**
  *
@@ -21,4 +26,10 @@ public class SpringDemoApplication {
 		SpringApplication.run(SpringDemoApplication.class, args);
 	}
 
+	@Bean
+	public Jackson2ObjectMapperBuilderCustomizer addCustomBigDecimalDeserialization() {
+		return builder -> {
+			builder.mixIn(Event.class, EventMixin.class);
+		};
+	}
 }

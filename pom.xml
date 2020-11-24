@@ -5,12 +5,15 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.0-M4</version>
+		<version>2.4.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>com.oracle.coherence.hibernate</groupId>
-	<artifactId>coherence-hibernate-demo</artifactId>
+	<artifactId>coherence-hibernate-demo-parent</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
 	<name>Coherence Hibernate Demo</name>
 	<description>Demo project for Coherence Hibernate</description>
 
@@ -18,55 +21,49 @@
 		<java.version>8</java.version>
 		<hibernate.version>5.2.17.Final</hibernate.version>
 		<coherence-hibernate-cache-52.version>2.0.0-SNAPSHOT</coherence-hibernate-cache-52.version>
-		<coherence.version>20.06.1</coherence.version>
+		<coherence.version>20.12-SNAPSHOT</coherence.version>
 	</properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-validation</artifactId>
-		</dependency>
+	<licenses>
+			<license>
+					<name>The Universal Permissive License (UPL), Version 1.0</name>
+					<url>http://oss.oracle.com/licenses/upl</url>
+					<distribution>repo</distribution>
+			</license>
+	</licenses>
 
-		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+	<developers>
+			<developer>
+					<name>Gunnar Hillert</name>
+					<organization>Oracle Corporation</organization>
+			</developer>
+	</developers>
 
-		<dependency>
-			<groupId>com.oracle.coherence.hibernate</groupId>
-			<artifactId>coherence-hibernate-cache-52</artifactId>
-			<version>${coherence-hibernate-cache-52.version}</version>
-		</dependency>
+	<modules>
+			<module>coherence-hibernate-demo-core</module>
+			<module>coherence-hibernate-demo-server</module>
+			<module>coherence-hibernate-demo-app</module>
+	</modules>
 
-		<dependency>
-			<groupId>com.oracle.coherence.ce</groupId>
-			<artifactId>coherence</artifactId>
-			<version>${coherence.version}</version>
-		</dependency>
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.oracle.coherence.hibernate</groupId>
+				<artifactId>coherence-hibernate-demo-core</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.oracle.coherence.hibernate</groupId>
+				<artifactId>coherence-hibernate-cache-52</artifactId>
+				<version>${coherence-hibernate-cache-52.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.oracle.coherence.ce</groupId>
+				<artifactId>coherence</artifactId>
+				<version>${coherence.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<repositories>
 		<repository>

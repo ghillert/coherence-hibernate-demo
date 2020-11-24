@@ -21,8 +21,6 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.NaturalId;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 /**
  *
  * @author Gunnar Hillert
@@ -44,7 +42,6 @@ public class Event {
 	private Date date;
 
 	@ManyToMany(targetEntity = Person.class)
-	@JsonIgnore
 	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	private Set<Person> participants = new HashSet<>();
 

@@ -26,7 +26,7 @@
         -->
         <cache-mapping>
             <cache-name>org.hibernate.cache.internal.StandardQueryCache</cache-name>
-            <scheme-name>hibernate-second-level-cache-near-scheme</scheme-name>
+            <scheme-name>remote</scheme-name>
             <init-params>
                 <init-param>
                     <param-name>front-tier-high-units</param-name>
@@ -41,7 +41,7 @@
 
         <cache-mapping>
             <cache-name>query.*</cache-name>
-            <scheme-name>hibernate-second-level-cache-near-scheme</scheme-name>
+            <scheme-name>remote</scheme-name>
             <init-params>
                 <init-param>
                     <param-name>front-tier-high-units</param-name>
@@ -64,7 +64,7 @@
         -->
         <cache-mapping>
             <cache-name>org.hibernate.cache.spi.UpdateTimestampsCache</cache-name>
-            <scheme-name>hibernate-second-level-cache-near-scheme</scheme-name>
+            <scheme-name>remote</scheme-name>
         </cache-mapping>
 
         <!-- Besides query caches and the update timestamps cache, all other caches in the Hibernate second-level cache
@@ -94,7 +94,8 @@
         -->
         <cache-mapping>
             <cache-name>*</cache-name>
-            <scheme-name>hibernate-second-level-cache-distributed-scheme</scheme-name>
+            <scheme-name>remote</scheme-name>
+            <!-- <scheme-name>hibernate-second-level-cache-distributed-scheme</scheme-name> -->
             <init-params>
                 <init-param>
                     <param-name>back-tier-size-limit</param-name>
@@ -140,6 +141,23 @@
             <autostart>true</autostart>
         </distributed-scheme>
 
+        <remote-cache-scheme>
+            <scheme-name>remote</scheme-name>
+            <service-name>ExtendTcpCacheService</service-name>
+            <initiator-config>
+                <tcp-initiator>
+                    <name-service-addresses>
+                        <socket-address>
+                            <address>127.0.0.1</address>
+                            <port>7574</port>
+                        </socket-address>
+                    </name-service-addresses>
+                </tcp-initiator>
+                <outgoing-message-handler>
+                    <request-timeout>5s</request-timeout>
+                </outgoing-message-handler>
+            </initiator-config>
+        </remote-cache-scheme>
     </caching-schemes>
 
 </cache-config>
