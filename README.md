@@ -1,6 +1,10 @@
 # Coherence Hibernate Demo
 
-![Java CI with Maven](https://github.com/ghillert/coherence-hibernate-demo/workflows/Java%20CI%20with%20Maven/badge.svg?branch=main) [![License](http://img.shields.io/badge/license-UPL%201.0-blue.svg)](https://oss.oracle.com/licenses/upl/)
+![Java CI with Maven](https://github.com/ghillert/coherence-hibernate-demo/workflows/Java%20CI%20with%20Maven/badge.svg?branch=main)
+[![License](http://img.shields.io/badge/license-UPL%201.0-blue.svg)](https://oss.oracle.com/licenses/upl/)
+[![Chat with us on slack](https://img.shields.io/badge/Coherence-Join%20Slack-red)](https://join.slack.com/t/oraclecoherence/shared_invite/zt-9ufv220y-Leudk0o5ntgNV0xraa8DNw)
+[![Twitter Follow](https://img.shields.io/twitter/follow/OracleCoherence?style=social)](https://twitter.com/OracleCoherence)
+
 
 ## Overview
 
