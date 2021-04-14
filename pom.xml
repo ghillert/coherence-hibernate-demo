@@ -21,28 +21,28 @@
 		<java.version>8</java.version>
 		<hibernate.version>5.2.17.Final</hibernate.version>
 		<coherence-hibernate-cache-52.version>2.0.0</coherence-hibernate-cache-52.version>
-		<coherence.version>20.12-SNAPSHOT</coherence.version>
+		<coherence.version>20.12.1</coherence.version>
 	</properties>
 
 	<licenses>
-			<license>
-					<name>The Universal Permissive License (UPL), Version 1.0</name>
-					<url>http://oss.oracle.com/licenses/upl</url>
-					<distribution>repo</distribution>
-			</license>
+		<license>
+			<name>The Universal Permissive License (UPL), Version 1.0</name>
+			<url>http://oss.oracle.com/licenses/upl</url>
+			<distribution>repo</distribution>
+		</license>
 	</licenses>
 
 	<developers>
-			<developer>
-					<name>Gunnar Hillert</name>
-					<organization>Oracle Corporation</organization>
-			</developer>
+		<developer>
+			<name>Gunnar Hillert</name>
+			<organization>Oracle Corporation</organization>
+		</developer>
 	</developers>
 
 	<modules>
-			<module>coherence-hibernate-demo-core</module>
-			<module>coherence-hibernate-demo-server</module>
-			<module>coherence-hibernate-demo-app</module>
+		<module>coherence-hibernate-demo-core</module>
+		<module>coherence-hibernate-demo-server</module>
+		<module>coherence-hibernate-demo-app</module>
 	</modules>
 
 	<dependencyManagement>

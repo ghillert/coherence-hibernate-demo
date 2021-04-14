@@ -5,4 +5,9 @@
 	<logging-config>
 		<destination>slf4j</destination>
 	</logging-config>
+<!-- 	<security-config>
+		<identity-asserter>
+			<class-name>com.oracle.coherence.hibernate.demo.identity.ServerSideIdentityAsserter</class-name>
+		</identity-asserter>
+	</security-config> -->
 </coherence>

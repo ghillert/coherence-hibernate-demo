@@ -5,4 +5,9 @@
 	<logging-config>
 		<destination>slf4j</destination>
 	</logging-config>
+<!-- 	<security-config>
+		<identity-transformer>
+			<class-name>com.oracle.coherence.hibernate.demo.identity.ClientSideIdentityTransformer</class-name>
+		</identity-transformer>
+	</security-config> -->
 </coherence>

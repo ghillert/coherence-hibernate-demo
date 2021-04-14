@@ -246,3 +246,59 @@ With caching you may see the following response:
   "successfulTransactionCount" : 1
 }
 ```
+
+## Running Client + Server using Identity Tokens (Optional)
+
+Identity tokens are used to control which clients have permission to access a Coherence cluster.
+For this to work, you need an **Identity Transformer** on the client-side and an
+**Identity Asserter** on the server-side.
+
+For this demo we use the following classes:
+
+- com.oracle.coherence.hibernate.demo.identity.ClientSideIdentityTransformer
+- com.oracle.coherence.hibernate.demo.identity.ServerSideIdentityAsserter
+
+These need to be configured in `tangosol-coherence-override.xml`.
+
+Un-comment the following sections for the server and the client module:
+
+Under module *coherence-hibernate-demo-app* in `tangosol-coherence-override.xml`:
+
+```xml
+<security-config>
+	<identity-transformer>
+		<class-name>com.oracle.coherence.hibernate.demo.identity.ClientSideIdentityTransformer</class-name>
+	</identity-transformer>
+</security-config>
+```
+
+Under module *coherence-hibernate-demo-server* in `tangosol-coherence-override.xml`:
+
+```xml
+<security-config>
+	<identity-asserter>
+		<class-name>com.oracle.coherence.hibernate.demo.identity.ServerSideIdentityAsserter</class-name>
+	</identity-asserter>
+</security-config>
+```
+
+When starting each application, please provide a system property `authenticationToken`
+with the same token for client and server.
+
+First, start the remote Coherence server:
+
+```bash
+java -DauthenticationToken=my_secret_token  \
+-jar coherence-hibernate-demo-server/target/coherence-hibernate-demo-server-1.0.0-SNAPSHOT.jar
+```
+
+Next, start the client application:
+
+```bash
+java -DauthenticationToken=my_secret_token  \
+-jar coherence-hibernate-demo-app/target/coherence-hibernate-demo-app-1.0.0-SNAPSHOT.jar \
+--spring.profiles.active=remote
+```
+
+For more information, please consult the reference documentation on
+[Using Identity Tokens to Restrict Client Connections](https://docs.oracle.com/en/middleware/standalone/coherence/14.1.1.0/secure/securing-extend-client-connections.html#GUID-CB345CC0-9F83-44D6-A3E4-7A1ADF67426A)

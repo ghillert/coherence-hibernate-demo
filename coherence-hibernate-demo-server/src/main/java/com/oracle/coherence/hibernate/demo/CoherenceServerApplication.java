@@ -6,12 +6,15 @@
  */
 package com.oracle.coherence.hibernate.demo;
 
+import java.util.Map;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.tangosol.net.Coherence;
 import com.tangosol.net.CoherenceConfiguration;
+import com.tangosol.net.NamedMap;
 import com.tangosol.net.SessionConfiguration;
 
 /**
@@ -28,14 +31,16 @@ public class CoherenceServerApplication {
 
 	@Bean(destroyMethod = "close")
 	public Coherence coherenceServer() {
-		final SessionConfiguration sessionConfiguration = SessionConfiguration
-			.create(Coherence.DEFAULT_NAME, "coherence-cache-config.xml");
+		final SessionConfiguration sessionConfiguration = SessionConfiguration.builder()
+				.withConfigUri("coherence-cache-config.xml")
+				.build();
 
 		final CoherenceConfiguration cfg = CoherenceConfiguration.builder()
 				.withSessions(sessionConfiguration)
 				.build();
-		final Coherence coherence = Coherence.create(cfg);
+		final Coherence coherence = Coherence.clusterMember(cfg);
 		coherence.start().join();
+
 		return coherence;
 	}
 }

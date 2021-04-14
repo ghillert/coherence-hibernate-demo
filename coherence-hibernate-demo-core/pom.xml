@@ -14,13 +14,6 @@
 	<name>Coherence Hibernate Demo Core</name>
 	<description>Share Serialization Code for the Coherence Hibernate Demo</description>
 
-	<properties>
-		<java.version>8</java.version>
-		<hibernate.version>5.2.17.Final</hibernate.version>
-		<coherence-hibernate-cache-52.version>2.0.0-SNAPSHOT</coherence-hibernate-cache-52.version>
-		<coherence.version>20.06.1</coherence.version>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>com.oracle.coherence.hibernate</groupId>
@@ -29,6 +22,10 @@
 		<dependency>
 			<groupId>jakarta.persistence</groupId>
 			<artifactId>jakarta.persistence-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle.coherence.ce</groupId>
+			<artifactId>coherence</artifactId>
 		</dependency>
 	</dependencies>
 
