@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.0</version>
+		<version>2.5.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -19,9 +19,10 @@
 
 	<properties>
 		<java.version>8</java.version>
-		<hibernate.version>5.2.17.Final</hibernate.version>
-		<coherence-hibernate-cache-52.version>2.0.0</coherence-hibernate-cache-52.version>
-		<coherence.version>20.12.1</coherence.version>
+		<hibernate.version>5.6.0.Final</hibernate.version>
+		<coherence-hibernate-cache-53.version>2.1.0-SNAPSHOT</coherence-hibernate-cache-53.version>
+		<coherence.version>21.06.2</coherence.version>
+		<hibernate-micrometer.version>5.6.1.Final</hibernate-micrometer.version>
 	</properties>
 
 	<licenses>
@@ -54,8 +55,8 @@
 			</dependency>
 			<dependency>
 				<groupId>com.oracle.coherence.hibernate</groupId>
-				<artifactId>coherence-hibernate-cache-52</artifactId>
-				<version>${coherence-hibernate-cache-52.version}</version>
+				<artifactId>coherence-hibernate-cache-53</artifactId>
+				<version>${coherence-hibernate-cache-53.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.oracle.coherence.ce</groupId>

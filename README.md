@@ -60,7 +60,7 @@ Next, start the demo:
 java -jar coherence-hibernate-demo-app/target/coherence-hibernate-demo-app-1.0.0-SNAPSHOT.jar --spring.profiles.active=remote
 ```
 
-We will use the exact same application as used for the embedded Coherence demo. However by activating the `remote` Spring Boot profile using `--spring.profiles.active=remote`, we use a different chache config file `remote-hibernate-second-level-cache-config.xml` defined in `application-remote.yml`.
+We will use the exact same application as used for the embedded Coherence demo. However, by activating the `remote` Spring Boot profile using `--spring.profiles.active=remote`, we use a different chache config file `remote-hibernate-second-level-cache-config.xml` defined in `application-remote.yml`.
 
 ## Execute the REST enpoints
 
@@ -94,7 +94,11 @@ In the console you should some basic statistics being printed:
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 ```
 
-You can also see statistics at `http://localhost:8080/api/statistics`.
+You can also see statistics via the Spring Boot metrics endpoint `http://localhost:8080/actuator/metrics`:
+
+- L2C puts - http://localhost:8080/actuator/metrics/hibernate.second.level.cache.puts
+- L2C hits - http://localhost:8080/actuator/metrics/hibernate.second.level.cache.requests?tag=result:hit
+- L2C misses - http://localhost:8080/actuator/metrics/hibernate.second.level.cache.requests?tag=result:miss
 
 ## More Details
 
@@ -113,13 +117,13 @@ We have added 2 domain objects to the application:
 
 ### Add Required Dependencies
 
-First, please add the respective dependency to your `pom.xml`. In our case, we are using Hibernate version `5.2.17.Final`. Therefore, the dependency to add is:
+First, please add the respective dependency to your `pom.xml`. In our case, we are using Hibernate version `5.6.0.final`. Therefore, the dependency to add is:
 
 ```xml
 <dependency>
     <groupId>com.oracle.coherence.hibernate</groupId>
-    <artifactId>coherence-hibernate-cache-52</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
+    <artifactId>coherence-hibernate-cache-53</artifactId>
+    <version>2.1.0-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -129,7 +133,7 @@ You will also need to add a specific version of Coherence, e.g.:
 <dependency>
     <groupId>com.oracle.coherence.ce</groupId>
     <artifactId>coherence</artifactId>
-    <version>20.06.1</version>
+    <version>21.06.2</version>
 </dependency>
 ```
 
@@ -192,60 +196,6 @@ Furthermore, we have 3 REST controllers.
 - GET `/api/people` Gets a paginated list of events
 - POST `/api/people?firstname=Eric&lastname=Cartman&age=10` Create a single person
 - POST `/api/people/{personId}/add-to-event/{eventId}` Add a person to an event
-
-## StatisticsController
-
-- GET `/api/statistics` Return Hibernate statistics
-
-With caching you may see the following response:
-
-```json
-{
-  "startTime" : 1604093369323,
-  "sessionOpenCount" : 6,
-  "sessionCloseCount" : 5,
-  "flushCount" : 0,
-  "connectCount" : 1,
-  "prepareStatementCount" : 0,
-  "closeStatementCount" : 0,
-  "entityLoadCount" : 0,
-  "entityUpdateCount" : 0,
-  "entityInsertCount" : 0,
-  "entityDeleteCount" : 0,
-  "entityFetchCount" : 0,
-  "collectionLoadCount" : 0,
-  "collectionUpdateCount" : 0,
-  "collectionRemoveCount" : 0,
-  "collectionRecreateCount" : 0,
-  "collectionFetchCount" : 0,
-  "secondLevelCacheHitCount" : 0,
-  "secondLevelCacheMissCount" : 0,
-  "secondLevelCachePutCount" : 0,
-  "naturalIdCacheHitCount" : 0,
-  "naturalIdCacheMissCount" : 0,
-  "naturalIdCachePutCount" : 0,
-  "naturalIdQueryExecutionCount" : 0,
-  "naturalIdQueryExecutionMaxTime" : 0,
-  "naturalIdQueryExecutionMaxTimeRegion" : null,
-  "queryExecutionCount" : 0,
-  "queryExecutionMaxTime" : 0,
-  "queryExecutionMaxTimeQueryString" : null,
-  "queryCacheHitCount" : 0,
-  "queryCacheMissCount" : 0,
-  "queryCachePutCount" : 0,
-  "updateTimestampsCacheHitCount" : 0,
-  "updateTimestampsCacheMissCount" : 0,
-  "updateTimestampsCachePutCount" : 0,
-  "transactionCount" : 1,
-  "optimisticFailureCount" : 0,
-  "statisticsEnabled" : true,
-  "queries" : [ ],
-  "entityNames" : [ "com.oracle.coherence.hibernate.demo.model.Person", "com.oracle.coherence.hibernate.demo.model.Event" ],
-  "collectionRoleNames" : [ "com.oracle.coherence.hibernate.demo.model.Person", "com.oracle.coherence.hibernate.demo.model.Event" ],
-  "secondLevelCacheRegionNames" : [ ],
-  "successfulTransactionCount" : 1
-}
-```
 
 ## Running Client + Server using Identity Tokens (Optional)
 
